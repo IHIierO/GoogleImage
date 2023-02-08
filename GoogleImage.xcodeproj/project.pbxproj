@@ -9,23 +9,55 @@
 /* Begin PBXBuildFile section */
 		395BE4282993A0A200DCD96C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4272993A0A200DCD96C /* AppDelegate.swift */; };
 		395BE42A2993A0A200DCD96C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4292993A0A200DCD96C /* SceneDelegate.swift */; };
-		395BE42C2993A0A200DCD96C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE42B2993A0A200DCD96C /* ViewController.swift */; };
-		395BE42F2993A0A200DCD96C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395BE42D2993A0A200DCD96C /* Main.storyboard */; };
+		395BE42C2993A0A200DCD96C /* GIMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE42B2993A0A200DCD96C /* GIMainViewController.swift */; };
 		395BE4322993A0A200DCD96C /* GoogleImage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4302993A0A200DCD96C /* GoogleImage.xcdatamodeld */; };
 		395BE4342993A0A300DCD96C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395BE4332993A0A300DCD96C /* Assets.xcassets */; };
 		395BE4372993A0A300DCD96C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395BE4352993A0A300DCD96C /* LaunchScreen.storyboard */; };
+		395BE4482993A4CE00DCD96C /* GIListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4472993A4CE00DCD96C /* GIListView.swift */; };
+		395BE44B2993A55900DCD96C /* GIListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE44A2993A55900DCD96C /* GIListViewViewModel.swift */; };
+		395BE44D2993A62800DCD96C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE44C2993A62800DCD96C /* Extensions.swift */; };
+		395BE44F2993AAC700DCD96C /* GIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE44E2993AAC700DCD96C /* GIService.swift */; };
+		395BE4512993AB5500DCD96C /* GIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4502993AB5500DCD96C /* GIRequest.swift */; };
+		395BE4532993ACB800DCD96C /* GIEndpount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4522993ACB800DCD96C /* GIEndpount.swift */; };
+		395BE4552993AD0D00DCD96C /* GIAPICacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4542993AD0D00DCD96C /* GIAPICacheManager.swift */; };
+		395BE4572993B1E100DCD96C /* GIImageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4562993B1E100DCD96C /* GIImageResponse.swift */; };
+		395BE4592993B8AF00DCD96C /* GIImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4582993B8AF00DCD96C /* GIImageCollectionViewCell.swift */; };
+		395BE45B2993B98000DCD96C /* GIImageCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE45A2993B98000DCD96C /* GIImageCollectionViewCellViewModel.swift */; };
+		395BE45D2993BA3200DCD96C /* GIImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE45C2993BA3200DCD96C /* GIImageLoader.swift */; };
+		395BE45F2993BDCD00DCD96C /* ImagesResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE45E2993BDCD00DCD96C /* ImagesResults.swift */; };
+		395BE4612993C04200DCD96C /* SearchMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4602993C04200DCD96C /* SearchMetadata.swift */; };
+		395BE4632993C0D800DCD96C /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4622993C0D800DCD96C /* SearchParameters.swift */; };
+		395BE4652993C14C00DCD96C /* SearchInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4642993C14C00DCD96C /* SearchInformation.swift */; };
+		395BE4672993C19B00DCD96C /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4662993C19B00DCD96C /* MenuItems.swift */; };
+		395BE4692993C21400DCD96C /* SuggestedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4682993C21400DCD96C /* SuggestedSearches.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		395BE4242993A0A200DCD96C /* GoogleImage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoogleImage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395BE4272993A0A200DCD96C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		395BE4292993A0A200DCD96C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		395BE42B2993A0A200DCD96C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		395BE42E2993A0A200DCD96C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		395BE42B2993A0A200DCD96C /* GIMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIMainViewController.swift; sourceTree = "<group>"; };
 		395BE4312993A0A200DCD96C /* GoogleImage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GoogleImage.xcdatamodel; sourceTree = "<group>"; };
 		395BE4332993A0A300DCD96C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		395BE4362993A0A300DCD96C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395BE4382993A0A300DCD96C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		395BE4472993A4CE00DCD96C /* GIListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIListView.swift; sourceTree = "<group>"; };
+		395BE44A2993A55900DCD96C /* GIListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIListViewViewModel.swift; sourceTree = "<group>"; };
+		395BE44C2993A62800DCD96C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		395BE44E2993AAC700DCD96C /* GIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIService.swift; sourceTree = "<group>"; };
+		395BE4502993AB5500DCD96C /* GIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIRequest.swift; sourceTree = "<group>"; };
+		395BE4522993ACB800DCD96C /* GIEndpount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIEndpount.swift; sourceTree = "<group>"; };
+		395BE4542993AD0D00DCD96C /* GIAPICacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIAPICacheManager.swift; sourceTree = "<group>"; };
+		395BE4562993B1E100DCD96C /* GIImageResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageResponse.swift; sourceTree = "<group>"; };
+		395BE4582993B8AF00DCD96C /* GIImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		395BE45A2993B98000DCD96C /* GIImageCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		395BE45C2993BA3200DCD96C /* GIImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageLoader.swift; sourceTree = "<group>"; };
+		395BE45E2993BDCD00DCD96C /* ImagesResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesResults.swift; sourceTree = "<group>"; };
+		395BE4602993C04200DCD96C /* SearchMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMetadata.swift; sourceTree = "<group>"; };
+		395BE4622993C0D800DCD96C /* SearchParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
+		395BE4642993C14C00DCD96C /* SearchInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInformation.swift; sourceTree = "<group>"; };
+		395BE4662993C19B00DCD96C /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
+		395BE4682993C21400DCD96C /* SuggestedSearches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedSearches.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +90,112 @@
 		395BE4262993A0A200DCD96C /* GoogleImage */ = {
 			isa = PBXGroup;
 			children = (
+				395BE4442993A24400DCD96C /* Managers */,
+				395BE4432993A23800DCD96C /* APIClient */,
+				395BE4422993A22900DCD96C /* Controllers */,
+				395BE4412993A22200DCD96C /* Models */,
+				395BE4402993A21200DCD96C /* ViewModels */,
+				395BE43F2993A20100DCD96C /* Views */,
+				395BE43E2993A1AD00DCD96C /* Resources */,
+			);
+			path = GoogleImage;
+			sourceTree = "<group>";
+		};
+		395BE43E2993A1AD00DCD96C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				395BE4272993A0A200DCD96C /* AppDelegate.swift */,
 				395BE4292993A0A200DCD96C /* SceneDelegate.swift */,
-				395BE42B2993A0A200DCD96C /* ViewController.swift */,
-				395BE42D2993A0A200DCD96C /* Main.storyboard */,
 				395BE4332993A0A300DCD96C /* Assets.xcassets */,
 				395BE4352993A0A300DCD96C /* LaunchScreen.storyboard */,
 				395BE4382993A0A300DCD96C /* Info.plist */,
 				395BE4302993A0A200DCD96C /* GoogleImage.xcdatamodeld */,
 			);
-			path = GoogleImage;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		395BE43F2993A20100DCD96C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				395BE4462993A4BA00DCD96C /* GIMain */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		395BE4402993A21200DCD96C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				395BE4492993A54800DCD96C /* DIMain */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		395BE4412993A22200DCD96C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				395BE4562993B1E100DCD96C /* GIImageResponse.swift */,
+				395BE45E2993BDCD00DCD96C /* ImagesResults.swift */,
+				395BE4602993C04200DCD96C /* SearchMetadata.swift */,
+				395BE4622993C0D800DCD96C /* SearchParameters.swift */,
+				395BE4642993C14C00DCD96C /* SearchInformation.swift */,
+				395BE4662993C19B00DCD96C /* MenuItems.swift */,
+				395BE4682993C21400DCD96C /* SuggestedSearches.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		395BE4422993A22900DCD96C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				395BE4452993A25600DCD96C /* Core */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		395BE4432993A23800DCD96C /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				395BE44E2993AAC700DCD96C /* GIService.swift */,
+				395BE4502993AB5500DCD96C /* GIRequest.swift */,
+				395BE4522993ACB800DCD96C /* GIEndpount.swift */,
+			);
+			path = APIClient;
+			sourceTree = "<group>";
+		};
+		395BE4442993A24400DCD96C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				395BE44C2993A62800DCD96C /* Extensions.swift */,
+				395BE4542993AD0D00DCD96C /* GIAPICacheManager.swift */,
+				395BE45C2993BA3200DCD96C /* GIImageLoader.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		395BE4452993A25600DCD96C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				395BE42B2993A0A200DCD96C /* GIMainViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		395BE4462993A4BA00DCD96C /* GIMain */ = {
+			isa = PBXGroup;
+			children = (
+				395BE4472993A4CE00DCD96C /* GIListView.swift */,
+				395BE4582993B8AF00DCD96C /* GIImageCollectionViewCell.swift */,
+			);
+			path = GIMain;
+			sourceTree = "<group>";
+		};
+		395BE4492993A54800DCD96C /* DIMain */ = {
+			isa = PBXGroup;
+			children = (
+				395BE44A2993A55900DCD96C /* GIListViewViewModel.swift */,
+				395BE45A2993B98000DCD96C /* GIImageCollectionViewCellViewModel.swift */,
+			);
+			path = DIMain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +258,6 @@
 			files = (
 				395BE4372993A0A300DCD96C /* LaunchScreen.storyboard in Resources */,
 				395BE4342993A0A300DCD96C /* Assets.xcassets in Resources */,
-				395BE42F2993A0A200DCD96C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +268,33 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395BE4552993AD0D00DCD96C /* GIAPICacheManager.swift in Sources */,
+				395BE4532993ACB800DCD96C /* GIEndpount.swift in Sources */,
+				395BE4592993B8AF00DCD96C /* GIImageCollectionViewCell.swift in Sources */,
+				395BE45B2993B98000DCD96C /* GIImageCollectionViewCellViewModel.swift in Sources */,
 				395BE4322993A0A200DCD96C /* GoogleImage.xcdatamodeld in Sources */,
-				395BE42C2993A0A200DCD96C /* ViewController.swift in Sources */,
+				395BE4512993AB5500DCD96C /* GIRequest.swift in Sources */,
+				395BE4572993B1E100DCD96C /* GIImageResponse.swift in Sources */,
+				395BE4482993A4CE00DCD96C /* GIListView.swift in Sources */,
+				395BE42C2993A0A200DCD96C /* GIMainViewController.swift in Sources */,
+				395BE4632993C0D800DCD96C /* SearchParameters.swift in Sources */,
+				395BE44F2993AAC700DCD96C /* GIService.swift in Sources */,
+				395BE44B2993A55900DCD96C /* GIListViewViewModel.swift in Sources */,
+				395BE45F2993BDCD00DCD96C /* ImagesResults.swift in Sources */,
 				395BE4282993A0A200DCD96C /* AppDelegate.swift in Sources */,
+				395BE4612993C04200DCD96C /* SearchMetadata.swift in Sources */,
+				395BE4652993C14C00DCD96C /* SearchInformation.swift in Sources */,
 				395BE42A2993A0A200DCD96C /* SceneDelegate.swift in Sources */,
+				395BE4672993C19B00DCD96C /* MenuItems.swift in Sources */,
+				395BE4692993C21400DCD96C /* SuggestedSearches.swift in Sources */,
+				395BE44D2993A62800DCD96C /* Extensions.swift in Sources */,
+				395BE45D2993BA3200DCD96C /* GIImageLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		395BE42D2993A0A200DCD96C /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				395BE42E2993A0A200DCD96C /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		395BE4352993A0A300DCD96C /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -293,12 +429,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z77PMGH233;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoogleImage/Info.plist;
+				INFOPLIST_FILE = GoogleImage/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -321,12 +457,12 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Z77PMGH233;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GoogleImage/Info.plist;
+				INFOPLIST_FILE = GoogleImage/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
