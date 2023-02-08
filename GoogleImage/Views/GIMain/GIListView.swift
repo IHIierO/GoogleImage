@@ -10,7 +10,8 @@ import UIKit
 protocol GIListViewDelegate: AnyObject {
     func giListView(
         _ giListView: GIListView,
-        didSelectEpisode image: ImagesResults
+        didSelectEpisode image: ImagesResults,
+        allImages imageResult: [ImagesResults]
     )
 }
 
@@ -77,9 +78,8 @@ final class GIListView: UIView {
 }
 
 extension GIListView: GIListViewViewModelDelegate {
-    func didSelectEpisode(_ image: ImagesResults) {
-        delegate?.giListView(self, didSelectEpisode: image)
+    func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults]) {
+        delegate?.giListView(self, didSelectEpisode: image, allImages: imageResult)
     }
-    
     
 }

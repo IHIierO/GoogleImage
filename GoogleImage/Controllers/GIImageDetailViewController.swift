@@ -51,6 +51,34 @@ class GIImageDetailViewController: UIViewController {
 
 
 extension GIImageDetailViewController: GIImageDetailViewDelegate {
+    func goToPrev(_ viewModel: GIImageDetailViewViewModel) {
+       let image = viewModel.imageResult.first(where: {
+            $0.position == viewModel.image.position - 1
+       })
+        guard image != nil else {
+           print("Thit is first image")
+           return
+       }
+        print("Prev Image Position = \(image)")
+        
+        viewModel.image = image!
+        detailView.getImage()
+    }
+    
+    func goToNext(_ viewModel: GIImageDetailViewViewModel) {
+        let image = viewModel.imageResult.first(where: {
+             $0.position == viewModel.image.position + 1
+        })
+         guard image != nil else {
+            print("Thit is last image")
+            return
+        }
+         print("Next Image Position = \(image)")
+         
+         viewModel.image = image!
+         detailView.getImage()
+    }
+    
     func goToOriginal(_ viewModel: GIImageDetailViewViewModel) {
         guard Thread.current.isMainThread else {
             return

@@ -11,6 +11,8 @@ final class GIImageDetailViewViewModel {
     
     public var image: ImagesResults
     
+    public var imageResult: [ImagesResults] = []
+    
     init(image: ImagesResults) {
         self.image = image
     }

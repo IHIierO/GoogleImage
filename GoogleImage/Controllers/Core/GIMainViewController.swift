@@ -47,9 +47,11 @@ final class GIMainViewController: UIViewController {
 }
 
 extension GIMainViewController: GIListViewDelegate {
-    func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults) {
+    func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults, allImages imageResult: [ImagesResults]) {
         let viewModel = GIImageDetailViewViewModel(image: image)
+        viewModel.imageResult = imageResult
         let detailVC = GIImageDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(detailVC, animated: true)
     }
+    
 }

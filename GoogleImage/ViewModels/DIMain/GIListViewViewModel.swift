@@ -9,7 +9,7 @@ import UIKit
 
 //MARK: - GIListViewViewModelDelegate
 protocol GIListViewViewModelDelegate: AnyObject {
-    func didSelectEpisode(_ image: ImagesResults)
+    func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults])
 }
 
 final class GIListViewViewModel: NSObject {
@@ -76,7 +76,7 @@ extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let image = imageResult[indexPath.row]
-        delegate?.didSelectEpisode(image)
+        delegate?.didSelectEpisode(image, imageResult)
     }
     
 }
