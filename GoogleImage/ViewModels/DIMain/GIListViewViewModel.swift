@@ -7,7 +7,14 @@
 
 import UIKit
 
+//MARK: - GIListViewViewModelDelegate
+protocol GIListViewViewModelDelegate: AnyObject {
+    func didSelectEpisode(_ image: ImagesResults)
+}
+
 final class GIListViewViewModel: NSObject {
+    
+    public weak var delegate: GIListViewViewModelDelegate?
     
     private var imageResult: [ImagesResults] = [] {
         didSet {
@@ -64,6 +71,12 @@ extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSou
         let bounds = collectionView.bounds
         let width = (bounds.width / 4) - 10
         return CGSize(width: width, height: width)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let image = imageResult[indexPath.row]
+        delegate?.didSelectEpisode(image)
     }
     
 }

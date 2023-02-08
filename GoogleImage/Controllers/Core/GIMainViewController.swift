@@ -29,6 +29,7 @@ final class GIMainViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = "Google Image"
         view.addSubviews(giListView, searchBar)
+        giListView.delegate = self
     }
     
     private func setConstraints() {
@@ -43,6 +44,12 @@ final class GIMainViewController: UIViewController {
             giListView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-
 }
 
+extension GIMainViewController: GIListViewDelegate {
+    func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults) {
+        let viewModel = GIImageDetailViewViewModel(image: image)
+        let detailVC = GIImageDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}

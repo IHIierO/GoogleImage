@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImagesResults: Codable {
+struct ImagesResults: Codable, GIImagesResultsDataRender {
     let position: Int
     let thumbnail: String
     let source: String

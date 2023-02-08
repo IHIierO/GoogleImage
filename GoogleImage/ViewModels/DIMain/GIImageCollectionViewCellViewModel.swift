@@ -7,6 +7,12 @@
 
 import Foundation
 
+protocol GIImagesResultsDataRender {
+    var position: Int {get}
+    var thumbnail: String {get}
+    var original: String {get}
+}
+
 final class GIImageCollectionViewCellViewModel: Hashable, Equatable {
     
     private let imageURL: URL?

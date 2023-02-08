@@ -7,7 +7,16 @@
 
 import UIKit
 
+protocol GIListViewDelegate: AnyObject {
+    func giListView(
+        _ giListView: GIListView,
+        didSelectEpisode image: ImagesResults
+    )
+}
+
 final class GIListView: UIView {
+    
+    public weak var delegate: GIListViewDelegate?
     
     private let viewModel = GIListViewViewModel()
     
@@ -48,6 +57,7 @@ final class GIListView: UIView {
         collectionView.delegate = viewModel
         collectionView.dataSource = viewModel
         viewModel.fetchImages()
+        viewModel.delegate = self
         //spinner.startAnimating()
     }
     
@@ -64,5 +74,12 @@ final class GIListView: UIView {
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
+}
+
+extension GIListView: GIListViewViewModelDelegate {
+    func didSelectEpisode(_ image: ImagesResults) {
+        delegate?.giListView(self, didSelectEpisode: image)
+    }
+    
     
 }
