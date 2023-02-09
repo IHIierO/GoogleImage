@@ -22,3 +22,19 @@ extension UIStackView {
         })
     }
 }
+
+extension UICollectionView {
+    var widestCellWidth: CGFloat {
+        let insets = contentInset.left + contentInset.right
+        return bounds.width - insets
+    }
+}
+
+extension UIDevice {
+    
+    static var isPhoneSE: Bool {
+        let screenWidth = UIScreen.main.bounds.width
+        return screenWidth == 320
+    }
+    
+}

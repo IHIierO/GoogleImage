@@ -16,11 +16,24 @@ protocol GIImagesResultsDataRender {
 final class GIImageCollectionViewCellViewModel: Hashable, Equatable {
     
     private let imageURL: URL?
+    private let imageTitle: String
+    private let imageLink: String
     
     // MARK: -Init
     
-    init(imageURL: URL?) {
+    init(imageURL: URL?, imageTitle: String, imageLink: String) {
         self.imageURL = imageURL
+        self.imageTitle = imageTitle
+        self.imageLink = imageLink
+    }
+    
+    public var fetchImageTitle: String {
+        return imageTitle
+    }
+    public var fetchImageLink: String {
+        let imageLink = imageLink.trimmingCharacters(in: .urlHostAllowed)
+        let components = imageLink.split(separator: "/")
+        return String(components[0])
     }
     
     public func fethImage(completion: @escaping (Result<Data, Error>) -> Void) {
@@ -38,5 +51,7 @@ final class GIImageCollectionViewCellViewModel: Hashable, Equatable {
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(imageURL)
+        hasher.combine(imageTitle)
+        hasher.combine(imageLink)
     }
 }

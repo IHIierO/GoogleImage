@@ -33,6 +33,7 @@
 		395BE46B2993E93100DCD96C /* GIImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE46A2993E93100DCD96C /* GIImageDetailViewController.swift */; };
 		395BE46D2993E98100DCD96C /* GIImageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE46C2993E98100DCD96C /* GIImageDetailView.swift */; };
 		395BE46F2993ED6800DCD96C /* GIImageDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE46E2993ED6800DCD96C /* GIImageDetailViewViewModel.swift */; };
+		395BE4712995149B00DCD96C /* GIAdaptiveCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395BE4702995149B00DCD96C /* GIAdaptiveCollectionViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +65,7 @@
 		395BE46A2993E93100DCD96C /* GIImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GIImageDetailViewController.swift; path = GoogleImage/Controllers/GIImageDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		395BE46C2993E98100DCD96C /* GIImageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageDetailView.swift; sourceTree = "<group>"; };
 		395BE46E2993ED6800DCD96C /* GIImageDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIImageDetailViewViewModel.swift; sourceTree = "<group>"; };
+		395BE4702995149B00DCD96C /* GIAdaptiveCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GIAdaptiveCollectionViewLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 				395BE44C2993A62800DCD96C /* Extensions.swift */,
 				395BE4542993AD0D00DCD96C /* GIAPICacheManager.swift */,
 				395BE45C2993BA3200DCD96C /* GIImageLoader.swift */,
+				395BE4702995149B00DCD96C /* GIAdaptiveCollectionViewLayout.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				395BE46F2993ED6800DCD96C /* GIImageDetailViewViewModel.swift in Sources */,
 				395BE42C2993A0A200DCD96C /* GIMainViewController.swift in Sources */,
 				395BE4632993C0D800DCD96C /* SearchParameters.swift in Sources */,
+				395BE4712995149B00DCD96C /* GIAdaptiveCollectionViewLayout.swift in Sources */,
 				395BE46D2993E98100DCD96C /* GIImageDetailView.swift in Sources */,
 				395BE44F2993AAC700DCD96C /* GIService.swift in Sources */,
 				395BE44B2993A55900DCD96C /* GIListViewViewModel.swift in Sources */,

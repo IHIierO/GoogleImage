@@ -29,9 +29,9 @@ final class GIListView: UIView {
     }()
     
     private let collectionView: UICollectionView = {
-       let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+       let layout = AdaptiveCollectionLayout()
+        //layout.scrollDirection = .vertical
+       // layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
 //        collectionView.isHidden = true
 //        collectionView.alpha = 0
@@ -57,6 +57,10 @@ final class GIListView: UIView {
         addSubviews(collectionView, spinner)
         collectionView.delegate = viewModel
         collectionView.dataSource = viewModel
+        
+        if let layout = collectionView.collectionViewLayout as? AdaptiveCollectionLayout {
+            layout.delegate = viewModel
+        }
         viewModel.fetchImages()
         viewModel.delegate = self
         //spinner.startAnimating()
