@@ -8,8 +8,8 @@
 import Foundation
 
 struct MenuItems: Codable {
-   let position: Int
-   let title: String
+   let position: Int?
+   let title: String?
    let link: String?
    let serpapi_link: String?
 }

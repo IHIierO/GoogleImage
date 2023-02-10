@@ -8,12 +8,12 @@
 import Foundation
 
 struct SearchMetadata: Codable {
-   let id: String
-   let status: String
-   let json_endpoint: String
-   let created_at: String
-   let processed_at: String
-   let google_url: String
-   let raw_html_file: String
-   let total_time_taken: Double
+   let id: String?
+   let status: String?
+   let json_endpoint: String?
+   let created_at: String?
+   let processed_at: String?
+   let google_url: String?
+   let raw_html_file: String?
+   let total_time_taken: Double?
 }

@@ -11,7 +11,7 @@ import Foundation
 final class GIAPICacheManager {
     // API URL: Data
     
-    private var cacheDictionary: [GIEndpoint: NSCache<NSString, NSData>] = [:]
+    private var cacheDictionary: [String: NSCache<NSString, NSData>] = [:]
     
     private var cache = NSCache<NSString, NSData>()
     
@@ -21,7 +21,7 @@ final class GIAPICacheManager {
     
     // MARK: - Public
     
-    public func cacheResponse(for endpoint: GIEndpoint, url: URL?) -> Data? {
+    public func cacheResponse(for endpoint: String, url: URL?) -> Data? {
         guard let targetCache = cacheDictionary[endpoint], let url = url else {
             return nil
         }
@@ -29,7 +29,7 @@ final class GIAPICacheManager {
         return targetCache.object(forKey: key) as? Data
     }
     
-    public func setCache(for endpoint: GIEndpoint, url: URL?, data: Data){
+    public func setCache(for endpoint: String, url: URL?, data: Data){
         guard let targetCache = cacheDictionary[endpoint], let url = url else {
             return
         }
@@ -40,7 +40,7 @@ final class GIAPICacheManager {
     // MARK: - Private
     private func setupCache() {
         GIEndpoint.allCases.forEach({ endpoint in
-            cacheDictionary[endpoint] = NSCache<NSString, NSData>()
+            cacheDictionary[endpoint.rawValue] = NSCache<NSString, NSData>()
         })
     }
 }

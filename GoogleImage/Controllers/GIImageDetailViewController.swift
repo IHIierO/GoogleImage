@@ -59,8 +59,6 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
            print("Thit is first image")
            return
        }
-        print("Prev Image Position = \(image)")
-        
         viewModel.image = image!
         detailView.getImage()
     }
@@ -73,8 +71,6 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
             print("Thit is last image")
             return
         }
-         print("Next Image Position = \(image)")
-         
          viewModel.image = image!
          detailView.getImage()
     }
@@ -83,8 +79,10 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
         guard Thread.current.isMainThread else {
             return
         }
-        
-        if let url = URL(string: viewModel.image.link) {
+        guard let link = viewModel.image.link else {
+            return 
+        }
+        if let url = URL(string: link) {
             let safariController = SFSafariViewController(url: url)
             present(safariController, animated: true)
         }

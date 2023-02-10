@@ -19,7 +19,10 @@ final class GIListViewViewModel: NSObject {
     private var imageResult: [ImagesResults] = [] {
         didSet {
             for result in imageResult {
-                let viewModel = GIImageCollectionViewCellViewModel(imageURL: URL(string: result.thumbnail), imageTitle: result.title, imageLink: result.link)
+                guard let title = result.title, let link = result.link else {
+                    return
+                }
+                let viewModel = GIImageCollectionViewCellViewModel(imageURL: URL(string: result.thumbnail), imageTitle: title, imageLink: link)
                 if !cellViewModels.contains(viewModel){
                     cellViewModels.append(viewModel)
                 }
@@ -33,7 +36,7 @@ final class GIListViewViewModel: NSObject {
     
     /// Fetch initial set of images(100)
     public func fetchImages() {
-        GIService.shared.execute(.listAppleRequest, expexting: GIImageResponse.self) {
+        GIService.shared.execute(GIRequest(searchString: " John Wick"), expexting: GIImageResponse.self) {
             [weak self] results in
             switch results {
             case .success(let responseModel):
@@ -70,31 +73,27 @@ extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSou
         
         return cell
     }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let image = imageResult[indexPath.row]
         delegate?.didSelectEpisode(image, imageResult)
     }
+    
 }
 
 extension GIListViewViewModel: AdaptiveCollectionLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGFloat {
-       
         if indexPath.row >= cellViewModels.startIndex && indexPath.row < cellViewModels.endIndex {
+            guard  imageResult[indexPath.row].original_width != nil , imageResult[indexPath.row].original_height != nil else {
+                return AdaptiveCollectionConfig.cellBaseHeight
+            }
             
-            let imageWidth: Double = Double(imageResult[indexPath.row].original_width)
-            print("imageWidth = \(imageWidth)")
-            let imageHeight: Double = Double(imageResult[indexPath.row].original_height)
-            print("imageHeight = \(imageHeight)")
-            let ratio: Double = imageWidth / imageHeight
-            print("ratio = \(ratio)")
+            let imageWidth: Double = Double(imageResult[indexPath.row].original_width!)
+            let imageHeight: Double = Double(imageResult[indexPath.row].original_height!)
+            let ratio: Double = imageWidth / (imageHeight + 70)
             let height = collectionView.widestCellWidth / 2 / ratio
-            
-            print("Cell height = \(height)")
             return CGFloat(height)
         }
-        
         return AdaptiveCollectionConfig.cellBaseHeight
     }
 }

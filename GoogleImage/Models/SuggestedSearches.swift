@@ -8,9 +8,9 @@
 import Foundation
 
 struct SuggestedSearches: Codable {
-   let name: String
-   let link: String
-   let chips: String
-   let serpapi_link: String
-   let thumbnail: String
+   let name: String?
+   let link: String?
+   let chips: String?
+   let serpapi_link: String?
+   let thumbnail: String?
 }

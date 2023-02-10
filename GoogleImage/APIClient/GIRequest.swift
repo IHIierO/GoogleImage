@@ -12,10 +12,10 @@ final class GIRequest {
     
     // MARK: - Constants
     private struct Constants {
-        static let baseURl = "https://serpapi.com/search.json?q"
+        static let baseURl = "https://serpapi.com/search.json?q="
     }
     
-    let endpoint: GIEndpoint
+    var endpoint: String
     
     private let pathComponents: [String]
     
@@ -23,10 +23,9 @@ final class GIRequest {
     
     /// Constructed url for the api request in string format
     public var urlString: String {
-        //https://serpapi.com/search.json?q=Apple&tbm=isch&ijn=0
+        let searchString = endpoint.replacingOccurrences(of: " ", with: "%20")
         var string = Constants.baseURl
-        string += "="
-        string += endpoint.rawValue
+        string += searchString
         string += "&tbm=isch&ijn=0"
         //string += endpoint.rawValue
         
@@ -61,8 +60,8 @@ final class GIRequest {
     ///   - endpoint: Target endpoint
     ///   - pathComponents: Collection of path components
     ///   - queryParameters: Collection of query parameters
-    init(endpoint: GIEndpoint, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
-        self.endpoint = endpoint
+    init(searchString: String, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
+       self.endpoint = searchString
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
@@ -74,22 +73,22 @@ final class GIRequest {
         if !string.contains(Constants.baseURl) {
             return nil
         }
-        let trimmed = string.replacingOccurrences(of: Constants.baseURl+"=", with: "")
-        if trimmed.contains("=") {
-            let components = trimmed.components(separatedBy: "=")
-            if !components.isEmpty {
-                let endpointString = components[0]
-                var pathComponents: [String] = []
-                if components.count > 1 {
-                    pathComponents = components
-                    pathComponents.removeFirst()
-                }
-                if let giEndpoint = GIEndpoint(rawValue: endpointString) {
-                    self.init(endpoint: giEndpoint, pathComponents: pathComponents)
-                    return
-                }
-            }
-        }
+//        let trimmed = string.replacingOccurrences(of: Constants.baseURl+"=", with: "")
+//        if trimmed.contains("=") {
+//            let components = trimmed.components(separatedBy: "=")
+//            if !components.isEmpty {
+//                let endpointString = components[0]
+//                var pathComponents: [String] = []
+//                if components.count > 1 {
+//                    pathComponents = components
+//                    pathComponents.removeFirst()
+//                }
+//                if let giEndpoint = GIEndpoint(rawValue: endpointString) {
+//                    self.init(endpoint: giEndpoint, pathComponents: pathComponents)
+//                    return
+//                }
+//            }
+//        }
 //           else if trimmed.contains("?") {
 //            let components = trimmed.components(separatedBy: "?")
 //            if !components.isEmpty, components.count >= 2 {
@@ -116,6 +115,6 @@ final class GIRequest {
 }
 
 extension GIRequest {
-    static let listAppleRequest = GIRequest(endpoint: .apple)
-    static let listEpisodeRequest = GIRequest(endpoint: .episode)
+//    static let listAppleRequest = GIRequest(endpoint: .apple)
+//    static let listEpisodeRequest = GIRequest(endpoint: .episode)
 }

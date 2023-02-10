@@ -10,11 +10,11 @@ import Foundation
 struct ImagesResults: Codable, GIImagesResultsDataRender {
     let position: Int
     let thumbnail: String
-    let source: String
-    let title: String
-    let link: String
-    let original: String
-    let original_width: Int
-    let original_height: Int
-    let is_product: Bool
+    let source: String?
+    let title: String?
+    let link: String?
+    let original: String?
+    let original_width: Int?
+    let original_height: Int?
+    let is_product: Bool?
 }

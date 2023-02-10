@@ -10,7 +10,7 @@ import Foundation
 /// Represents unique API endpoints
 @frozen enum GIEndpoint: String, CaseIterable, Hashable {
     /// Endpoint to get character info
-    case apple = "Apple"
+    case apple = "apple"
     /// Endpoint to get location info
     case location
     /// Endpoint to get episode info

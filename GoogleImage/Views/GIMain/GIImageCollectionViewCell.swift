@@ -11,10 +11,11 @@ import UIKit
 final class GIImageCollectionViewCell: UICollectionViewCell {
     static let celIdentifier = "GIImageCollectionViewCell"
     
-    public let imageView: UIImageView = {
+    private let imageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -40,7 +41,7 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .secondarySystemBackground
         contentView.addSubviews(imageView, imageLink, imageTitle)
         setConstraints()
-       setupLayer()
+        setupLayer()
     }
     
     required init?(coder: NSCoder) {
@@ -69,11 +70,11 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
     
     private func setConstraints() {
         NSLayoutConstraint.activate([
-            imageTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 4),
             imageTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             imageTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             
-            imageLink.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            imageLink.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 4),
             imageLink.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             imageLink.bottomAnchor.constraint(equalTo: imageTitle.topAnchor),
             
@@ -83,19 +84,6 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
             imageView.bottomAnchor.constraint(equalTo: imageLink.topAnchor),
         ])
     }
-    
-//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        setNeedsLayout()
-//        layoutIfNeeded()
-//        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-//        var newFrame = layoutAttributes.frame
-//        newFrame.size.height = CGFloat(ceilf(Float(size.height)))
-//        layoutAttributes.frame = newFrame
-//
-//        return layoutAttributes
-//    }
-    
-  
     
     public func configure(with viewModel: GIImageCollectionViewCellViewModel) {
         viewModel.fethImage { [weak self] result in

@@ -8,10 +8,10 @@
 import Foundation
 
 struct SearchParameters: Codable {
-   let engine: String
-   let q: String
-   let google_domain: String
-   let ijn: String
-   let device: String
-   let tbm: String
+   let engine: String?
+   let q: String?
+   let google_domain: String?
+   let ijn: String?
+   let device: String?
+   let tbm: String?
 }
