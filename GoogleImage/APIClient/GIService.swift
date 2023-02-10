@@ -33,7 +33,7 @@ final class GIService {
         expexting type: T.Type,
         completion: @escaping (Result<T, Error>) -> Void
     ) {
-        if let cacheData = cacheManager.cacheResponse(for: request.endpoint, url: request.url) {
+        if let cacheData = cacheManager.cacheResponse(for: request.searchString, url: request.url) {
             do {
                 let result = try JSONDecoder().decode(type.self, from: cacheData)
                 completion(.success(result))
@@ -60,7 +60,7 @@ final class GIService {
             do {
                 print("DATA: - \(data)")
                 let result = try JSONDecoder().decode(type.self, from: data)
-                self?.cacheManager.setCache(for: request.endpoint, url: request.url, data: data)
+                self?.cacheManager.setCache(for: request.searchString, url: request.url, data: data)
                 completion(.success(result))
             }
             catch {

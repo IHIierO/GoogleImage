@@ -56,7 +56,6 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
             $0.position == viewModel.image.position - 1
        })
         guard image != nil else {
-           print("Thit is first image")
            return
        }
         viewModel.image = image!
@@ -68,7 +67,6 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
              $0.position == viewModel.image.position + 1
         })
          guard image != nil else {
-            print("Thit is last image")
             return
         }
          viewModel.image = image!

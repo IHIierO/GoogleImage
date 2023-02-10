@@ -62,7 +62,6 @@ extension GIMainViewController: GIListViewDelegate {
 extension GIMainViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        print("Start Change")
         giListView.viewModel.delegate?.didLoadNewImages()
     }
     

@@ -80,7 +80,6 @@ final class GIListView: UIView {
 
 extension GIListView: GIListViewViewModelDelegate {
     func didLoadNewImages() {
-        print("Start Change CollectionView")
         spinner.startAnimating()
         collectionView.isHidden = true
         collectionView.reloadData()

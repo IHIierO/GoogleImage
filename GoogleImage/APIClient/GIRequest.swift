@@ -15,7 +15,7 @@ final class GIRequest {
         static let baseURl = "https://serpapi.com/search.json?q="
     }
     
-    var endpoint: String
+    var searchString: String
     var ijn: Int
     
     private let pathComponents: [String]
@@ -24,7 +24,7 @@ final class GIRequest {
     
     /// Constructed url for the api request in string format
     public var urlString: String {
-        let searchString = endpoint.replacingOccurrences(of: " ", with: "%20")
+        let searchString = searchString.replacingOccurrences(of: " ", with: "%20")
         var string = Constants.baseURl
         string += searchString
         string += "&tbm=isch&ijn="
@@ -33,27 +33,30 @@ final class GIRequest {
         
         //string += endpoint.rawValue
         
-        if !pathComponents.isEmpty {
-            pathComponents.forEach({
-                string += "/\($0)"
-            })
-        }
-
-        if !queryParameters.isEmpty {
-            string += "?"
-            let argumentString = queryParameters.compactMap {
-                guard let value = $0.value else {return nil}
-                return "\($0.name)=\(value)"
-            }.joined(separator: "&")
-            string += argumentString
-        }
+//        if !pathComponents.isEmpty {
+//            pathComponents.forEach({
+//                string += "/\($0)"
+//            })
+//        }
+//
+//        if !queryParameters.isEmpty {
+//            string += "?"
+//            let argumentString = queryParameters.compactMap {
+//                guard let value = $0.value else {return nil}
+//                return "\($0.name)=\(value)"
+//            }.joined(separator: "&")
+//            string += argumentString
+//        }
         
         return string
     }
     
     /// Computed  & Construct API url
     public var url: URL? {
-        return URL(string: urlString)
+        guard let encodedUrlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return nil
+        }
+        return URL(string: encodedUrlString)
     }
     
     /// Desired http method
@@ -65,7 +68,7 @@ final class GIRequest {
     ///   - pathComponents: Collection of path components
     ///   - queryParameters: Collection of query parameters
     init(searchString: String, ijn: Int = 0, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
-       self.endpoint = searchString
+       self.searchString = searchString
         self.ijn = ijn
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
