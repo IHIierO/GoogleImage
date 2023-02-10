@@ -82,6 +82,12 @@ final class GIListView: UIView {
 }
 
 extension GIListView: GIListViewViewModelDelegate {
+    func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
+        collectionView.performBatchUpdates {
+            self.collectionView.insertItems(at: newIndexPaths)
+        }
+    }
+    
     func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults]) {
         delegate?.giListView(self, didSelectEpisode: image, allImages: imageResult)
     }

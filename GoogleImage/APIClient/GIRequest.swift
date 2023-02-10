@@ -16,6 +16,7 @@ final class GIRequest {
     }
     
     var endpoint: String
+    var ijn: Int
     
     private let pathComponents: [String]
     
@@ -26,7 +27,10 @@ final class GIRequest {
         let searchString = endpoint.replacingOccurrences(of: " ", with: "%20")
         var string = Constants.baseURl
         string += searchString
-        string += "&tbm=isch&ijn=0"
+        string += "&tbm=isch&ijn="
+        string += "\(ijn)"
+        string += Constants.apiKey
+        
         //string += endpoint.rawValue
         
         if !pathComponents.isEmpty {
@@ -60,8 +64,9 @@ final class GIRequest {
     ///   - endpoint: Target endpoint
     ///   - pathComponents: Collection of path components
     ///   - queryParameters: Collection of query parameters
-    init(searchString: String, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
+    init(searchString: String, ijn: Int = 0, pathComponents: [String] = [], queryParameters: [URLQueryItem] = []) {
        self.endpoint = searchString
+        self.ijn = ijn
         self.pathComponents = pathComponents
         self.queryParameters = queryParameters
     }
@@ -73,43 +78,17 @@ final class GIRequest {
         if !string.contains(Constants.baseURl) {
             return nil
         }
-//        let trimmed = string.replacingOccurrences(of: Constants.baseURl+"=", with: "")
-//        if trimmed.contains("=") {
-//            let components = trimmed.components(separatedBy: "=")
-//            if !components.isEmpty {
-//                let endpointString = components[0]
-//                var pathComponents: [String] = []
-//                if components.count > 1 {
-//                    pathComponents = components
-//                    pathComponents.removeFirst()
-//                }
-//                if let giEndpoint = GIEndpoint(rawValue: endpointString) {
-//                    self.init(endpoint: giEndpoint, pathComponents: pathComponents)
-//                    return
-//                }
-//            }
-//        }
-//           else if trimmed.contains("?") {
-//            let components = trimmed.components(separatedBy: "?")
-//            if !components.isEmpty, components.count >= 2 {
-//                let endpointString = components[0]
-//                let queryItemsString = components[1]
-//                let queryItems: [URLQueryItem] = queryItemsString.components(separatedBy: "&").compactMap({
-//                    guard $0.contains("=") else {
-//                        return nil
-//                    }
-//
-//                    let parts = $0.components(separatedBy: "=")
-//                    return URLQueryItem(
-//                        name: parts[0],
-//                        value: parts[1])
-//                })
-//                if let giEndpoint = GIEndpoint(rawValue: endpointString) {
-//                    self.init(endpoint: giEndpoint, queryParameters: queryItems)
-//                    return
-//                }
-//            }
-//        }
+        
+        let trimmed = string.replacingOccurrences(of: Constants.baseURl, with: "")
+        if trimmed.contains("&") {
+            let components = trimmed.split(separator: "&")
+            if !components.isEmpty {
+                let searchString = String(components[0])
+                let ijn = Int(components[2].replacingOccurrences(of: "ijn=", with: ""))
+                self.init(searchString: searchString, ijn: ijn!)
+                return
+            }
+        }
         return nil
     }
 }

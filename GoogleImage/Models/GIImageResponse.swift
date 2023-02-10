@@ -12,7 +12,7 @@ struct GIImageResponse: Codable {
     let search_metadata: SearchMetadata
     let search_parameters: SearchParameters
     let search_information: SearchInformation
-    let suggested_searches: [SuggestedSearches]
+    let suggested_searches: [SuggestedSearches]?
     let images_results: [ImagesResults]
 }
 
