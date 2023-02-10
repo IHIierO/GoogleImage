@@ -11,9 +11,12 @@ final class GIMainViewController: UIViewController {
     
     private let giListView = GIListView()
     
+    private let viewModel = GIListViewViewModel()
+    
     private let searchBar: UISearchBar = {
        let searchBar = UISearchBar()
         searchBar.placeholder = "Enter a request"
+        searchBar.returnKeyType = .search
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         return searchBar
     }()
@@ -30,6 +33,7 @@ final class GIMainViewController: UIViewController {
         title = "Google Image"
         view.addSubviews(giListView, searchBar)
         giListView.delegate = self
+        searchBar.delegate = self
     }
     
     private func setConstraints() {
@@ -53,5 +57,19 @@ extension GIMainViewController: GIListViewDelegate {
         let detailVC = GIImageDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(detailVC, animated: true)
     }
+}
+
+extension GIMainViewController: UISearchBarDelegate {
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("Start Change")
+        giListView.viewModel.delegate?.didLoadNewImages()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else {
+            return
+        }
+         giListView.viewModel.fetchImages(searchString: searchText)
+    }
 }

@@ -9,6 +9,8 @@ import UIKit
 
 //MARK: - GIListViewViewModelDelegate
 protocol GIListViewViewModelDelegate: AnyObject {
+    func didLoadInitialImages()
+    func didLoadNewImages()
     func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults])
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
 }
@@ -19,7 +21,7 @@ final class GIListViewViewModel: NSObject {
     
     private var isLoadingMoreImages = false
     
-    private var imageResult: [ImagesResults] = [] {
+    public var imageResult: [ImagesResults] = [] {
         didSet {
             for result in imageResult {
                 guard let title = result.title, let link = result.link else {
@@ -38,18 +40,17 @@ final class GIListViewViewModel: NSObject {
     private var apiInfo: GIImageResponse? = nil
     
     /// Fetch initial set of images(100)
-    public func fetchImages() {
-        GIService.shared.execute(GIRequest(searchString: " John Wick"), expexting: GIImageResponse.self) {
+    public func fetchImages(searchString: String) {
+        cellViewModels.removeAll()
+        GIService.shared.execute(GIRequest(searchString: searchString), expexting: GIImageResponse.self) {
             [weak self] results in
             switch results {
             case .success(let responseModel):
                 let response = responseModel
                 self?.apiInfo = response
                 self?.imageResult = response.images_results
-                
-                //self?.apiInfo = info
                 DispatchQueue.main.async {
-                    //self?.delegate?.didLoadInitialEpisode()
+                    self?.delegate?.didLoadInitialImages()
                 }
             case .failure(let error):
                 print(String(describing: error))

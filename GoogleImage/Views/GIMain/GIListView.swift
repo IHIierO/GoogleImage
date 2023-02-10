@@ -19,7 +19,7 @@ final class GIListView: UIView {
     
     public weak var delegate: GIListViewDelegate?
     
-    private let viewModel = GIListViewViewModel()
+    public let viewModel = GIListViewViewModel()
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
@@ -30,14 +30,11 @@ final class GIListView: UIView {
     
     private let collectionView: UICollectionView = {
        let layout = AdaptiveCollectionLayout()
-        //layout.scrollDirection = .vertical
-       // layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-//        collectionView.isHidden = true
-//        collectionView.alpha = 0
+        collectionView.isHidden = true
+        collectionView.alpha = 0
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(GIImageCollectionViewCell.self, forCellWithReuseIdentifier: GIImageCollectionViewCell.celIdentifier)
-//        collectionView.register(RMFooterLoadingCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: RMFooterLoadingCollectionReusableView.identifier)
         return collectionView
     }()
 
@@ -61,9 +58,9 @@ final class GIListView: UIView {
         if let layout = collectionView.collectionViewLayout as? AdaptiveCollectionLayout {
             layout.delegate = viewModel
         }
-        viewModel.fetchImages()
+        //viewModel.fetchImages(searchString: "John Wick")
         viewModel.delegate = self
-        //spinner.startAnimating()
+        spinner.startAnimating()
     }
     
     private func setupConstraints() {
@@ -82,6 +79,25 @@ final class GIListView: UIView {
 }
 
 extension GIListView: GIListViewViewModelDelegate {
+    func didLoadNewImages() {
+        print("Start Change CollectionView")
+        spinner.startAnimating()
+        collectionView.isHidden = true
+        collectionView.reloadData()
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 0
+        }
+    }
+    
+    func didLoadInitialImages() {
+        spinner.stopAnimating()
+        collectionView.isHidden = false
+        collectionView.reloadData()
+        UIView.animate(withDuration: 0.4) {
+            self.collectionView.alpha = 1
+        }
+    }
+    
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
             self.collectionView.insertItems(at: newIndexPaths)

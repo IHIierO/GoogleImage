@@ -36,5 +36,4 @@ extension UIDevice {
         let screenWidth = UIScreen.main.bounds.width
         return screenWidth == 320
     }
-    
 }
