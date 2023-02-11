@@ -24,29 +24,12 @@ final class GIRequest {
     
     /// Constructed url for the api request in string format
     public var urlString: String {
-        let searchString = searchString.replacingOccurrences(of: " ", with: "%20")
+        //let searchString = searchString.replacingOccurrences(of: " ", with: "%20")
         var string = Constants.baseURl
         string += searchString
         string += "&tbm=isch&ijn="
         string += "\(ijn)"
         string += Constants.apiKey
-        
-        //string += endpoint.rawValue
-        
-//        if !pathComponents.isEmpty {
-//            pathComponents.forEach({
-//                string += "/\($0)"
-//            })
-//        }
-//
-//        if !queryParameters.isEmpty {
-//            string += "?"
-//            let argumentString = queryParameters.compactMap {
-//                guard let value = $0.value else {return nil}
-//                return "\($0.name)=\(value)"
-//            }.joined(separator: "&")
-//            string += argumentString
-//        }
         
         return string
     }
@@ -96,7 +79,3 @@ final class GIRequest {
     }
 }
 
-extension GIRequest {
-//    static let listAppleRequest = GIRequest(endpoint: .apple)
-//    static let listEpisodeRequest = GIRequest(endpoint: .episode)
-}

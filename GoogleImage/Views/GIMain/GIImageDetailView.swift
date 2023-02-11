@@ -29,7 +29,6 @@ class GIImageDetailView: UIView {
     private let buttonsStack: UIStackView = {
         let stack = UIStackView()
         stack.axis = .horizontal
-        //stack.distribution = .fillEqually
         stack.alignment = .center
         stack.spacing = 4
         stack.layoutMargins = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)

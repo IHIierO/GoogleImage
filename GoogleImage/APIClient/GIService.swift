@@ -71,7 +71,6 @@ final class GIService {
     }
     
     private func request(from giRequest: GIRequest) -> URLRequest? {
-        print("URL to Request: - \(giRequest.url)")
         guard let url = giRequest.url else {return nil}
         var request = URLRequest(url: url)
         request.httpMethod = giRequest.httpMethod

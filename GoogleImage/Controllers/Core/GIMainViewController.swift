@@ -10,8 +10,9 @@ import UIKit
 final class GIMainViewController: UIViewController {
     
     private let giListView = GIListView()
-    
     private let viewModel = GIListViewViewModel()
+    
+    public var selectedIndexPath: IndexPath!
     
     private let searchBar: UISearchBar = {
        let searchBar = UISearchBar()
@@ -50,8 +51,10 @@ final class GIMainViewController: UIViewController {
     }
 }
 
+// MARK: - GIListViewDelegate
 extension GIMainViewController: GIListViewDelegate {
-    func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults, allImages imageResult: [ImagesResults]) {
+    func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults, allImages imageResult: [ImagesResults], indexPath: IndexPath) {
+        selectedIndexPath = indexPath
         let viewModel = GIImageDetailViewViewModel(image: image)
         viewModel.imageResult = imageResult
         let detailVC = GIImageDetailViewController(viewModel: viewModel)
@@ -59,6 +62,7 @@ extension GIMainViewController: GIListViewDelegate {
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension GIMainViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -69,6 +73,8 @@ extension GIMainViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text else {
             return
         }
+        searchBar.becomeFirstResponder()
+        giListView.spinner.startAnimating()
          giListView.viewModel.fetchImages(searchString: searchText)
     }
 }

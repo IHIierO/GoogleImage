@@ -35,6 +35,10 @@ final class GIImageCollectionViewCellViewModel: Hashable, Equatable {
         let components = imageLink.split(separator: "/")
         return String(components[0])
     }
+    public var imageThumbnail: String {
+        let string = imageURL?.absoluteString
+        return string!
+    }
     
     public func fethImage(completion: @escaping (Result<Data, Error>) -> Void) {
         guard let url = imageURL else {

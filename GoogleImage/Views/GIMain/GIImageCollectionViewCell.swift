@@ -11,7 +11,14 @@ import UIKit
 final class GIImageCollectionViewCell: UICollectionViewCell {
     static let celIdentifier = "GIImageCollectionViewCell"
     
-    private let imageView: UIImageView = {
+    private let spinner: UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView(style: .large)
+        spinner.hidesWhenStopped = true
+        spinner.translatesAutoresizingMaskIntoConstraints = false
+        return spinner
+    }()
+    
+    public let imageView: UIImageView = {
        let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
@@ -39,9 +46,10 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
-        contentView.addSubviews(imageView, imageLink, imageTitle)
+        contentView.addSubviews(imageView, imageLink, imageTitle, spinner)
         setConstraints()
         setupLayer()
+        spinner.startAnimating()
     }
     
     required init?(coder: NSCoder) {
@@ -82,6 +90,11 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
             imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
             imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
             imageView.bottomAnchor.constraint(equalTo: imageLink.topAnchor),
+            
+            spinner.topAnchor.constraint(equalTo: contentView.topAnchor),
+            spinner.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            spinner.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            spinner.bottomAnchor.constraint(equalTo: imageLink.topAnchor),
         ])
     }
     
@@ -92,6 +105,7 @@ final class GIImageCollectionViewCell: UICollectionViewCell {
                 DispatchQueue.main.async {
                     let image = UIImage(data: data)
                     self?.imageView.image = image
+                    self?.spinner.stopAnimating()
                 }
             case .failure(let error):
                 print(String(describing: error))

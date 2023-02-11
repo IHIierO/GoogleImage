@@ -11,7 +11,7 @@ import UIKit
 protocol GIListViewViewModelDelegate: AnyObject {
     func didLoadInitialImages()
     func didLoadNewImages()
-    func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults])
+    func didSelectEpisode(_ image: ImagesResults, _ imageResult: [ImagesResults], indexPath: IndexPath)
     func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
 }
 
@@ -23,14 +23,14 @@ final class GIListViewViewModel: NSObject {
     
     public var imageResult: [ImagesResults] = [] {
         didSet {
+            cellViewModels.removeAll()
             for result in imageResult {
                 guard let title = result.title, let link = result.link else {
                     return
                 }
                 let viewModel = GIImageCollectionViewCellViewModel(imageURL: URL(string: result.thumbnail), imageTitle: title, imageLink: link)
-                if !cellViewModels.contains(viewModel){
-                    cellViewModels.append(viewModel)
-                }
+                
+                cellViewModels.append(viewModel)
             }
         }
     }
@@ -79,14 +79,16 @@ final class GIListViewViewModel: NSObject {
                 let moreResults = responseModel.images_results
                 strongSelf.apiInfo = responseModel
                 
-                let originalCount = strongSelf.imageResult.count
+                let originalCount = strongSelf.cellViewModels.count
                 let newCount = moreResults.count
                 let total = originalCount+newCount
                 let startingIndex = total-newCount
+                
+                strongSelf.imageResult.append(contentsOf: moreResults)
+                let finalCount = strongSelf.cellViewModels.count - originalCount
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
                     return IndexPath(row: $0, section: 0)
                 })
-                strongSelf.imageResult.append(contentsOf: moreResults)
                 DispatchQueue.main.async {
                     strongSelf.delegate?.didLoadMoreCharacters(with: indexPathsToAdd)
                     strongSelf.isLoadingMoreImages = false
@@ -107,7 +109,7 @@ final class GIListViewViewModel: NSObject {
 // MARK: - CollectionView Delegates
 extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageResult.count
+        return cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,16 +117,16 @@ extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSou
             fatalError("Unsupported cell")
         }
         
-        if indexPath.row >= cellViewModels.startIndex && indexPath.row < cellViewModels.endIndex {
+        //if indexPath.row >= cellViewModels.startIndex && indexPath.row < cellViewModels.endIndex {
             cell.configure(with: cellViewModels[indexPath.row])
-        }
+        //}
         
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let image = imageResult[indexPath.row]
-        delegate?.didSelectEpisode(image, imageResult)
+        delegate?.didSelectEpisode(image, imageResult, indexPath: indexPath)
     }
     
 }
@@ -157,9 +159,12 @@ extension GIListViewViewModel: UIScrollViewDelegate {
               let nextIjn = apiInfo?.search_parameters.ijn else {
             return
         }
-        
-        let nextUrlString = GIRequest(searchString: query, ijn: Int(nextIjn)!+1).urlString
-        guard let url = URL(string: nextUrlString) else {
+        let queryString = query.replacingOccurrences(of: "%20", with: " ")
+        let nextUrlString = GIRequest(searchString: queryString, ijn: Int(nextIjn)!+1).urlString
+        guard let encodednextUrlString = nextUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            return
+        }
+        guard let url = URL(string: encodednextUrlString) else {
             return
         }
         Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
