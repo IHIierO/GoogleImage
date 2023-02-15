@@ -13,6 +13,7 @@ final class GIRequest {
     // MARK: - Constants
     private struct Constants {
         static let baseURl = "https://serpapi.com/search.json?q="
+        static let apiKey = "&api_key=f50b8ba8b7f5427d4a8fe0e41ec7a1b42547705e379884fba9e1e3d72d4ab7d0"
     }
     
     var searchString: String
@@ -70,8 +71,10 @@ final class GIRequest {
             let components = trimmed.split(separator: "&")
             if !components.isEmpty {
                 let searchString = String(components[0])
-                let ijn = Int(components[2].replacingOccurrences(of: "ijn=", with: ""))
-                self.init(searchString: searchString, ijn: ijn!)
+                guard let ijn = Int(components[2].replacingOccurrences(of: "ijn=", with: "")) else {
+                    return nil
+                }
+                self.init(searchString: searchString, ijn: ijn)
                 return
             }
         }

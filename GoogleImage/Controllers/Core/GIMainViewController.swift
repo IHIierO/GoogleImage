@@ -12,8 +12,6 @@ final class GIMainViewController: UIViewController {
     private let giListView = GIListView()
     private let viewModel = GIListViewViewModel()
     
-    public var selectedIndexPath: IndexPath!
-    
     private let searchBar: UISearchBar = {
        let searchBar = UISearchBar()
         searchBar.placeholder = "Enter a request"
@@ -54,7 +52,6 @@ final class GIMainViewController: UIViewController {
 // MARK: - GIListViewDelegate
 extension GIMainViewController: GIListViewDelegate {
     func giListView(_ giListView: GIListView, didSelectEpisode image: ImagesResults, allImages imageResult: [ImagesResults], indexPath: IndexPath) {
-        selectedIndexPath = indexPath
         let viewModel = GIImageDetailViewViewModel(image: image)
         viewModel.imageResult = imageResult
         let detailVC = GIImageDetailViewController(viewModel: viewModel)

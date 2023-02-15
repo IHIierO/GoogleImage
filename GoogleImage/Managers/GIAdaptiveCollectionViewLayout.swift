@@ -28,7 +28,7 @@ struct AdaptiveCollectionConfig {
 
 class AdaptiveCollectionLayout: UICollectionViewLayout {
 
-    weak var delegate: AdaptiveCollectionLayoutDelegate!
+    weak var delegate: AdaptiveCollectionLayoutDelegate?
     // Cache is array of matrix with coordinates cell in X,Y
     // It will provide coordinates for visibility cell for UIKit
     // We can change it, as how we want
@@ -88,7 +88,7 @@ class AdaptiveCollectionLayout: UICollectionViewLayout {
 
             let indexPath = IndexPath(item: item, section: section)
 
-            let descriptionHeight = delegate.collectionView(collectionView, heightForImageAtIndexPath: indexPath)
+            guard let descriptionHeight = delegate?.collectionView(collectionView, heightForImageAtIndexPath: indexPath) else {return CGFloat(40)}
             let height = AdaptiveCollectionConfig.cellPadding * 2 + descriptionHeight
             let frame = CGRect(x: xOffset[column], y: yOffset[column], width: columnWidth, height: height)
             let insetFrame = frame.insetBy(

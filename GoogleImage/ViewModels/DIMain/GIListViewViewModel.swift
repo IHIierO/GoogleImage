@@ -85,7 +85,6 @@ final class GIListViewViewModel: NSObject {
                 let startingIndex = total-newCount
                 
                 strongSelf.imageResult.append(contentsOf: moreResults)
-                let finalCount = strongSelf.cellViewModels.count - originalCount
                 let indexPathsToAdd: [IndexPath] = Array(startingIndex..<(startingIndex+newCount)).compactMap({
                     return IndexPath(row: $0, section: 0)
                 })
@@ -135,12 +134,12 @@ extension GIListViewViewModel: UICollectionViewDelegate, UICollectionViewDataSou
 extension GIListViewViewModel: AdaptiveCollectionLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, heightForImageAtIndexPath indexPath: IndexPath) -> CGFloat {
         if indexPath.row >= cellViewModels.startIndex && indexPath.row < cellViewModels.endIndex {
-            guard  imageResult[indexPath.row].original_width != nil , imageResult[indexPath.row].original_height != nil else {
+            guard let originalWidth = imageResult[indexPath.row].original_width, let originalHeight = imageResult[indexPath.row].original_height else {
                 return AdaptiveCollectionConfig.cellBaseHeight
             }
             
-            let imageWidth: Double = Double(imageResult[indexPath.row].original_width!)
-            let imageHeight: Double = Double(imageResult[indexPath.row].original_height!)
+            let imageWidth: Double = Double(originalWidth)
+            let imageHeight: Double = Double(originalHeight)
             let ratio: Double = imageWidth / (imageHeight + 70)
             let height = collectionView.widestCellWidth / 2 / ratio
             return CGFloat(height)
@@ -160,7 +159,7 @@ extension GIListViewViewModel: UIScrollViewDelegate {
             return
         }
         let queryString = query.replacingOccurrences(of: "%20", with: " ")
-        let nextUrlString = GIRequest(searchString: queryString, ijn: Int(nextIjn)!+1).urlString
+        let nextUrlString = GIRequest(searchString: queryString, ijn: (Int(nextIjn) ?? 0)+1).urlString
         guard let encodednextUrlString = nextUrlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
             return
         }

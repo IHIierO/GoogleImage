@@ -55,10 +55,10 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
        let image = viewModel.imageResult.first(where: {
             $0.position == viewModel.image.position - 1
        })
-        guard image != nil else {
+        guard let prevImage = image else {
            return
        }
-        viewModel.image = image!
+        viewModel.image = prevImage
         detailView.getImage()
     }
     
@@ -66,10 +66,10 @@ extension GIImageDetailViewController: GIImageDetailViewDelegate {
         let image = viewModel.imageResult.first(where: {
              $0.position == viewModel.image.position + 1
         })
-         guard image != nil else {
+         guard let nextImage = image else {
             return
         }
-         viewModel.image = image!
+         viewModel.image = nextImage
          detailView.getImage()
     }
     

@@ -36,8 +36,10 @@ final class GIImageCollectionViewCellViewModel: Hashable, Equatable {
         return String(components[0])
     }
     public var imageThumbnail: String {
-        let string = imageURL?.absoluteString
-        return string!
+        guard let string = imageURL?.absoluteString else {
+            return ""
+        }
+        return string
     }
     
     public func fethImage(completion: @escaping (Result<Data, Error>) -> Void) {
