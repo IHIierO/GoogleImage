@@ -13,6 +13,7 @@ final class GIRequest {
     // MARK: - Constants
     private struct Constants {
         static let baseURl = "https://serpapi.com/search.json?q="
+        static let apiKey = "Your API key"
     }
     
     var searchString: String
